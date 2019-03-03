@@ -32,5 +32,5 @@ npm start
 cd elk-platform-management/backend/
 ```
 ```
-`mvn spring-boot:run`
+mvn spring-boot:run
 ```
