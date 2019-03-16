@@ -1,17 +1,20 @@
 package pl.pollub.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
-import pl.pollub.domain.User;
-import pl.pollub.dto.mappers.UserMapper;
-import pl.pollub.dto.request.UserRequest;
-import pl.pollub.dto.response.UserResponse;
-import pl.pollub.security.PrincipalProvider;
-import pl.pollub.service.UserService;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import pl.pollub.infrastructure.security.PrincipalProvider;
+import pl.pollub.user.User;
+import pl.pollub.user.UserCreator;
+import pl.pollub.user.UserService;
+import pl.pollub.user.dto.UserRequest;
+import pl.pollub.user.dto.UserResponse;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -19,17 +22,16 @@ import javax.validation.constraints.NotNull;
 @RestController
 @RequestMapping(value = "/api/users")
 @AllArgsConstructor
-public class UserController {
+class UserController {
 
     private UserService userService;
     private PrincipalProvider principalProvider;
-    private UserMapper userMapper;
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<UserResponse> saveUser(@RequestBody @Valid @NotNull UserRequest request) {
 
-        User user = userService.registerNewUser(userMapper.mapToEntity(request));
-        return new ResponseEntity<>(userMapper.mapToResponse(user), HttpStatus.CREATED);
+        User user = userService.registerNewUser(UserCreator.from(request));
+        return new ResponseEntity<>(user.toResponseDto(), HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
@@ -37,7 +39,7 @@ public class UserController {
     public ResponseEntity<UserResponse> getUserInfo(@PathVariable String username) {
 
         User user = userService.getUserByUsername(username);
-        return new ResponseEntity<>(userMapper.mapToResponse(user), HttpStatus.OK);
+        return new ResponseEntity<>(user.toResponseDto(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/authentication", method = RequestMethod.GET)
@@ -51,6 +53,9 @@ public class UserController {
     public ResponseEntity<UserResponse> getLoggedUsername() {
 
         String username = principalProvider.getLoggedUsername();
-        return new ResponseEntity<>(userMapper.mapUsernameToResponse(username), HttpStatus.OK);
+        return new ResponseEntity<>(UserResponse.builder()
+                                                .username(username)
+                                                .build(),
+                                    HttpStatus.OK);
     }
 }

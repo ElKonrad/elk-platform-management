@@ -26,7 +26,7 @@ npm install
 npm start
 ```
 #### Backend
-* From your IDE: `pl.pollub.TasksApplication`
+* From your IDE: `pl.pollub.ElkManagementApplication`
 * From command-line: 
 ```
 cd elk-platform-management/backend/
