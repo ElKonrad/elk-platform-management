@@ -8,4 +8,5 @@ import lombok.RequiredArgsConstructor;
 public class AddApplication {
 
     private final String name;
+    private final String filePath;
 }

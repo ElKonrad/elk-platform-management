@@ -7,6 +7,7 @@ class MonitoredAppCreator {
     public static MonitoredApp from(AddApplication addApplication) {
         return MonitoredApp.builder()
                            .name(addApplication.getName())
+                           .filepath(addApplication.getFilePath())
                            .build();
     }
 }

@@ -32,6 +32,8 @@ class MonitoredApp {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    private String filepath;
+
     enum Status {
         CREATED, CONFIGURED, REMOVED
     }
@@ -45,6 +47,6 @@ class MonitoredApp {
     }
 
     public ApplicationAdded dto() {
-        return new ApplicationAdded(id, name);
+        return new ApplicationAdded(id, name, filepath);
     }
 }

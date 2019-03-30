@@ -1,0 +1,24 @@
+input {
+	file {
+		type => "app1"
+		path => "/logs/app1.log"
+		codec => multiline {
+			pattern => "^%{TIMESTAMP_ISO8601:timestamp}"
+			negate => "true"
+			what => "previous"
+			auto_flush_interval => 1
+			}
+		sincedb_path => "/sincedb/1"
+	}
+	file {
+		type => "app2"
+		path => "/logs/app2.log"
+		codec => multiline {
+			pattern => "^%{TIMESTAMP_ISO8601:timestamp}"
+			negate => "true"
+			what => "previous"
+			auto_flush_interval => 1
+			}
+		sincedb_path => "/sincedb/2"
+	}
+}

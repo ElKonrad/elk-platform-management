@@ -22,7 +22,7 @@ class MonitoredAppController {
     @PostMapping(value = "")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<ApplicationAdded> addApplication(@RequestBody AddApplication application) {
-        ApplicationAdded added = monitoredAppFacade.add(application);
+        ApplicationAdded added = monitoredAppFacade.addAppAndRebuildConfig(application);
         return new ResponseEntity<>(added, HttpStatus.CREATED);
     }
 }
