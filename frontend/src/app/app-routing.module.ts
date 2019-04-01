@@ -6,11 +6,13 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {RegisterComponent} from "./auth/register/register.component";
 import {LoginComponent} from "./auth/login/login.component";
 import {AnonymousAccessGuardService} from "./auth-guards/anonymous-access-guard.service";
+import {AppsComponent} from "./apps/apps.component";
 
 @NgModule({
     imports: [
         RouterModule.forRoot([
             {path: '', component: TasksComponent},
+            {path: 'apps', component: AppsComponent},
             {path: 'register', component: RegisterComponent, canActivate: [AnonymousAccessGuardService]},
             {path: 'login', component: LoginComponent, canActivate: [AnonymousAccessGuardService]},
             {path: '**', component: PageNotFoundComponent}

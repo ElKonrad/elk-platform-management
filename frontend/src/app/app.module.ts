@@ -20,6 +20,10 @@ import {HeaderComponent} from "./core/header/header.component";
 import {ErrorComponent} from "./error/error.component";
 import {LogoutService} from "./auth/logout/logout.service";
 import {CookieService} from 'ngx-cookie-service';
+import { AppsComponent } from './apps/apps.component';
+import { AppsAddComponent } from './apps/apps-add/apps-add.component';
+import { AppsListComponent } from './apps/apps-list/apps-list.component';
+import {AppsService} from "./apps/apps.service";
 
 @NgModule({
     declarations: [
@@ -31,7 +35,10 @@ import {CookieService} from 'ngx-cookie-service';
         LoginComponent,
         HeaderComponent,
         ErrorComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        AppsComponent,
+        AppsAddComponent,
+        AppsListComponent
     ],
     imports: [
         BrowserModule,
@@ -42,6 +49,7 @@ import {CookieService} from 'ngx-cookie-service';
         AppRoutingModule
     ],
     providers: [
+        AppsService,
         TaskService,
         RegisterService,
         LoginService,

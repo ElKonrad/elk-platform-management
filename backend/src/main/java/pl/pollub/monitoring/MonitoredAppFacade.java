@@ -6,6 +6,8 @@ import pl.pollub.logstash.LogstashFacade;
 import pl.pollub.monitoring.dto.AddApplication;
 import pl.pollub.monitoring.dto.ApplicationAdded;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,5 +28,9 @@ public class MonitoredAppFacade {
                                                          .collect(toList());
         logstashFacade.buildConfiguration(apps);
         return created.dto();
+    }
+
+    public List<ApplicationAdded> getAllApps() {
+        return monitoredAppService.getAll().stream().map(MonitoredApp::dto).collect(toList());
     }
 }

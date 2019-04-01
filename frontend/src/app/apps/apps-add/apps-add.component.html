@@ -1,0 +1,56 @@
+<form class="form-horizontal"
+      novalidate
+      (ngSubmit)="addApp()"
+      [formGroup]="addApplicationForm">
+    <div class="form-group"
+         [ngClass]="{'has-error': (addApplicationForm.get('name').touched ||
+                                                       addApplicationForm.get('name').dirty) &&
+                                                      !addApplicationForm.get('name').valid }">
+        <div class="cols-sm-10">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-server fa" aria-hidden="true"></i></span>
+                <input type="text" class="form-control" name="name" id="name"
+                       placeholder="Podaj nazwę aplikacji" formControlName="name"/>
+            </div>
+            <span class="help-block" *ngIf="(addApplicationForm.get('name').touched ||
+                                                             addApplicationForm.get('name').dirty) &&
+                                                             addApplicationForm.get('name').errors">
+                                <span *ngIf="addApplicationForm.get('name').errors.required">
+                                    Nazwa aplikacji jest wymagana
+                                </span>
+                                <span *ngIf="addApplicationForm.get('name').errors.pattern">
+                                    Nieprawidłowa nazwa aplikacji
+                                </span>
+                        </span>
+        </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': (addApplicationForm.get('filePath').touched ||
+                                                       addApplicationForm.get('filePath').dirty) &&
+                                                      !addApplicationForm.get('filePath').valid }">
+        <div class="cols-sm-10">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-file-code-o  fa-lg" aria-hidden="true"></i></span>
+                <input type="text" class="form-control" name="filePath" id="filePath"
+                       placeholder="Podaj ścieżkę do pliku konfiguracji" formControlName="filePath"/>
+            </div>
+            <span class="help-block" *ngIf="(addApplicationForm.get('filePath').touched ||
+                                                             addApplicationForm.get('filePath').dirty) &&
+                                                             addApplicationForm.get('filePath').errors">
+                                <span *ngIf="addApplicationForm.get('filePath').errors.required">
+                                    Ścieżka jest wymagana
+                                </span>
+                                <span *ngIf="addApplicationForm.get('filePath').errors.pattern">
+                                    Nieprawidłowy format ścieżki
+                                </span>
+                        </span>
+        </div>
+    </div>
+
+    <div class="form-group ">
+        <button type="submit" class="btn btn-primary btn-lg btn-block"
+                [disabled]="!addApplicationForm.valid">Dodaj
+        </button>
+    </div>
+</form>

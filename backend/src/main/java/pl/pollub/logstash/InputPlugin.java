@@ -22,7 +22,7 @@ class InputPlugin {
     String build(List<ApplicationAdded> apps) {
         List<FileInputPlugin> filePlugin = apps.stream()
                                                .map(app -> new FileInputPlugin(app.getName(),
-                                                                               app.getFilepath(),
+                                                                               app.getFilePath(),
                                                                                FileInputPlugin.CodecFileInputPlugin.defaultConfig(),
                                                                                sinceDbPathDockerDirectory + app.getId().toString()))
                                                .collect(toList());
