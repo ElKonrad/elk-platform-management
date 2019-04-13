@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import pl.pollub.logstash.input.InputPluginType;
 import pl.pollub.monitoring.dto.ApplicationAdded;
 
 import javax.persistence.Column;
@@ -34,6 +35,13 @@ class MonitoredApp {
 
     private String filepath;
 
+    private String grokPattern;
+
+    @Enumerated(EnumType.STRING)
+    private InputPluginType inputType;
+
+    private int httpPort;
+
     enum Status {
         CREATED, CONFIGURED, REMOVED
     }
@@ -47,6 +55,6 @@ class MonitoredApp {
     }
 
     public ApplicationAdded dto() {
-        return new ApplicationAdded(id, name, filepath);
+        return new ApplicationAdded(id, name, grokPattern,filepath,inputType,httpPort);
     }
 }

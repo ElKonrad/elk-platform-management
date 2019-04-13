@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
 
                     this.responseStatus = res.status;
                     this.loginForm.reset();
-                    this.router.navigate(['/'])
+                    this.router.navigate(['/apps'])
                 },
                 err => {
                     this.responseStatus = err.status;

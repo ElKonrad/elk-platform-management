@@ -50,7 +50,7 @@ class LogstashService {
                                         configuration,
                                         "UTF-8");
         } catch (IOException e) {
-            log.error("Cannot build logstash configuration", e);
+            log.error("Cannot build logstash getConfiguration", e);
         }
     }
 

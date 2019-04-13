@@ -2,6 +2,8 @@ package pl.pollub.logstash;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import pl.pollub.logstash.filter.FilterPluginBuilder;
+import pl.pollub.logstash.input.InputPluginBuilder;
 import pl.pollub.monitoring.dto.ApplicationAdded;
 
 import java.util.List;
@@ -10,14 +12,14 @@ import java.util.List;
 @RequiredArgsConstructor
 class LogstashConfigurator {
 
-    private final InputPlugin inputPlugin;
-    private final FilterPlugin filterPlugin;
+    private final InputPluginBuilder inputPluginBuilder;
+    private final FilterPluginBuilder filterPluginBuilder;
     private final OutputPlugin outputPlugin;
 
     String createConfiguration(List<ApplicationAdded> apps) {
-        String input = inputPlugin.build(apps);
-        String filter = filterPlugin.defaultConfig(); //TODO change it later when filterPlugin will be implemented
-        String output = outputPlugin.defaultConfig(); //TODO change it later when outputPlugin will be implemented
+        String input = inputPluginBuilder.build(apps);
+        String filter = filterPluginBuilder.build(apps);
+        String output = outputPlugin.defaultConfig();
 
         return input +
                 "\n" +

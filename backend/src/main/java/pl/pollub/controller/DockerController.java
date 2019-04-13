@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.pollub.docker.DockerFacade;
 import pl.pollub.monitoring.dto.ApplicationAdded;
 
+import javax.annotation.PreDestroy;
+
 @RestController
 @RequestMapping("/api/dev/docker")
 @RequiredArgsConstructor

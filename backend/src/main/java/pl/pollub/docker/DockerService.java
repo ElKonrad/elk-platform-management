@@ -36,7 +36,7 @@ class DockerService {
             } else
                 throw new IllegalArgumentException("ELK docker-compose already up and running");
         } catch (ExecuteException e) {
-            log.info("Stopping ELK docker-compose...");
+            log.info("Stopping ELK docker-compose due to error...");
             shouldStop.set(true);
             stop();
         } catch (IOException | URISyntaxException e) {
