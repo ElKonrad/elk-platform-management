@@ -1,13 +1,25 @@
-<h2>Registered applications:</h2>
-<div class="panel panel-default" *ngFor="let app of apps; let i = index">
-  <div class="panel-heading">
-    <h3 class="panel-title">{{i + 1}}: {{app.name}}</h3>
-  </div>
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-md-12">
-        <input type="text" value="{{app.filePath}}" class="form-control">
+<div class="row">
+  <div class="col-md-2">&nbsp;</div>
+  <div class="col-md-8">
+    <div id="addAppsPanel" class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Registered applications:</h3>
+      </div>
+      <div class="panel-body">
+        <div class="panel panel-default" *ngFor="let app of apps; let i = index">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{i + 1}}: {{app.name}}</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-12">
+                <input type="text" value="{{app.filePath}}" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  <div class="col-md-2">&nbsp;</div>
 </div>

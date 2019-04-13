@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AppsService} from "../apps.service";
 import {MonitoredApplication} from "../../domain/request/monitored-application";
-import {Task} from "../../tasks/task.model";
 
 @Component({
   selector: 'app-apps-list',

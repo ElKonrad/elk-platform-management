@@ -27,7 +27,8 @@ export class AppsAddComponent implements OnInit {
     ngOnInit() {
         this.addApplicationForm = this.fb.group({
             name: ['', [Validators.required, Validators.pattern('^[a-z0-9_-\\s]+$')]],
-            filePath: ['', [Validators.required, Validators.pattern('(([^\\\\/]*[\\\\/])*)([^\\\\/]+)$')]]
+            filePath: ['', [Validators.required, Validators.pattern('(([^\\\\/]*[\\\\/])*)([^\\\\/]+)$')]],
+            grok: ['', [Validators.required]]
         });
     }
 
