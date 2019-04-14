@@ -10,13 +10,13 @@ public class FilterPluginBuilder {
 
     public String build(List<ApplicationAdded> applicationAddedList){
         StringBuilder filterPluginJson=new StringBuilder("filter {\n");
-        applicationAddedList.forEach(ad->filterPluginJson.append(grokForApp(ad.getName(),ad.getGrokPattern())));
+        applicationAddedList.forEach(ad->filterPluginJson.append(grokForApp(ad.getName(),ad.getGrok())));
         filterPluginJson.append("}");
         return filterPluginJson.toString();
     }
 
     private String grokForApp(String appType,String grokPattern){
-        return  "if [type] == \""+appType+"\"{\n"+
+        return  "if [type] == \""+appType+"\" {\n"+
                 "   grok {\n" +
                 "      match => [ \"message\", \""+grokPattern+"\"]\n" +
                 "    }\n" +

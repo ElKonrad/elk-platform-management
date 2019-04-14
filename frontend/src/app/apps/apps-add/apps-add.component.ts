@@ -27,9 +27,17 @@ export class AppsAddComponent implements OnInit {
     ngOnInit() {
         this.addApplicationForm = this.fb.group({
             name: ['', [Validators.required, Validators.pattern('^[a-z0-9_-\\s]+$')]],
-            filePath: ['', [Validators.required, Validators.pattern('(([^\\\\/]*[\\\\/])*)([^\\\\/]+)$')]],
-            grok: ['', [Validators.required]]
-        });
+            filePath: [''],
+            grok: ['', [Validators.required]],
+            inputType: ['FILE',[Validators.required]],
+            port: ['']
+        }, { validator: (group) => {
+                if (group.controls.inputType.value=='HTTP') {
+                    return Validators.required(group.controls.port);
+                }else{
+                    return Validators.required(group.controls.filePath);
+                }
+            }});
     }
 
     addApp() {
@@ -37,6 +45,7 @@ export class AppsAddComponent implements OnInit {
         this.appsService.addApplication(this.application)
             .subscribe(
                 res => {
+                    this.router.navigate(["/apps"]);
                     this.addApplicationForm.reset();
                     this.appsService.onAppAdded.emit(this.application);
                 },

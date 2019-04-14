@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import pl.pollub.logstash.LogstashPlugin;
-import pl.pollub.logstash.input.FileInputPlugin;
 import pl.pollub.monitoring.dto.ApplicationAdded;
 
 import java.util.List;
@@ -29,7 +28,7 @@ public class InputPluginBuilder {
                                                            FileInputPlugin.CodecFileInputPlugin.defaultConfig(),
                                                            sinceDbPathDockerDirectory + app.getId().toString());
                                                    else
-                                                       return new HttpInputPlugin(app.getName(),app.getHttpPort());
+                                                       return new HttpInputPlugin(app.getName(),app.getPort());
                                                })
                                                .collect(toList());
 

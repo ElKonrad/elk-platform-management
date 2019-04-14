@@ -13,9 +13,28 @@
           <div class="panel-body">
             <div class="row">
               <div class="col-md-12">
-                <input type="text" value="{{app.filePath}}" class="form-control">
+                  <p>
+                      Grok pattern:{{app.grok}}
+                  </p>
               </div>
             </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <p>
+                          Input type:{{app.inputType}}
+                      </p>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <p *ngIf="app.inputType=='FILE'">
+                          File path:{{app.filePath}}
+                      </p>
+                      <p *ngIf="app.inputType!='FILE'">
+                          Port:{{app.port}}
+                      </p>
+                  </div>
+              </div>
           </div>
         </div>
       </div>

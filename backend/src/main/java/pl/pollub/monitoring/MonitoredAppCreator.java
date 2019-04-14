@@ -8,6 +8,9 @@ class MonitoredAppCreator {
         return MonitoredApp.builder()
                            .name(addApplication.getName())
                            .filepath(addApplication.getFilePath())
+                           .grokPattern(addApplication.getGrok())
+                           .httpPort(addApplication.getPort())
+                           .inputType(addApplication.getInputType())
                            .build();
     }
 }

@@ -21,6 +21,8 @@ public class LogstashFacade {
 
     public void buildConfiguration(List<ApplicationAdded> apps) {
         String configuration = logstashConfigurator.createConfiguration(apps);
+        System.out.println("HHHHHHHHHHHHHHHH");
+        System.out.println(configuration);
         logstashService.persistConfig(configuration);
         logstashService.createLogstashSinceDbFiles(apps);
     }

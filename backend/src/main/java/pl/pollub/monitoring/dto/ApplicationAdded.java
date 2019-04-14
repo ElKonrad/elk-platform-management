@@ -10,8 +10,8 @@ public class ApplicationAdded {
 
     private final Long id;
     private final String name;
-    private final String grokPattern;
+    private final String grok;
     private final String filePath;
     private final InputPluginType inputType;
-    private final int httpPort;
+    private final int port;
 }

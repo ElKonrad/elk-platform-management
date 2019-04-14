@@ -26,16 +26,16 @@
     </div>
 
     <div class="form-group"
-         [ngClass]="{'has-error': (addApplicationForm.get('grok').touched ||
+               [ngClass]="{'has-error': (addApplicationForm.get('grok').touched ||
                                                        addApplicationForm.get('grok').dirty) &&
                                                       !addApplicationForm.get('grok').valid }">
-        <div class="cols-sm-10">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-file-code-o  fa-lg" aria-hidden="true"></i></span>
-                <input type="text" class="form-control" name="grok" id="grok"
-                       placeholder="Podaj wzorzec logów w formacie Grok (możesz użyć Grok Builder -> menu po lewej)" formControlName="filePath"/>
-            </div>
-            <span class="help-block" *ngIf="(addApplicationForm.get('grok').touched ||
+    <div class="cols-sm-10">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-file-code-o  fa-lg" aria-hidden="true"></i></span>
+            <input type="text" class="form-control" name="grok" id="grok"
+                   placeholder="Podaj wzorzec logów w formacie Grok (możesz użyć Grok Builder -> menu po lewej)" formControlName="grok"/>
+        </div>
+        <span class="help-block" *ngIf="(addApplicationForm.get('grok').touched ||
                                                              addApplicationForm.get('grok').dirty) &&
                                                              addApplicationForm.get('grok').errors">
                                 <span *ngIf="addApplicationForm.get('grok').errors.required">
@@ -45,11 +45,25 @@
                                     Nieprawidłowy wzorzec logów
                                 </span>
                         </span>
+    </div>
+    </div>
+
+    <div class="form-group">
+        <div class="cols-sm-10">
+            <div class="input-group">
+                <span class="input-group-addon">Źródło logów</span>
+                <select class="form-control" name="inputType" id="inputType" formControlName="inputType">
+                    <option value="FILE">File</option>
+                    <option value="HTTP">Http</option>
+                </select>
+            </div>
         </div>
     </div>
 
 
-    <div class="form-group"
+
+
+    <div class="form-group" *ngIf="this.addApplicationForm.controls.inputType.value=='FILE'"
          [ngClass]="{'has-error': (addApplicationForm.get('filePath').touched ||
                                                        addApplicationForm.get('filePath').dirty) &&
                                                       !addApplicationForm.get('filePath').valid }">
@@ -67,6 +81,29 @@
                                 </span>
                                 <span *ngIf="addApplicationForm.get('filePath').errors.pattern">
                                     Nieprawidłowy format ścieżki
+                                </span>
+                        </span>
+        </div>
+    </div>
+
+    <div class="form-group" *ngIf="this.addApplicationForm.controls.inputType.value=='HTTP'"
+         [ngClass]="{'has-error': (addApplicationForm.get('port').touched ||
+                                                       addApplicationForm.get('port').dirty) &&
+                                                      !addApplicationForm.get('port').valid }">
+        <div class="cols-sm-10">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-file-code-o  fa-lg" aria-hidden="true"></i></span>
+                <input type="text" class="form-control" name="port" id="port"
+                       placeholder="Podaj port na który będą wysyłane logi" formControlName="port"/>
+            </div>
+            <span class="help-block" *ngIf="(addApplicationForm.get('port').touched ||
+                                                             addApplicationForm.get('port').dirty) &&
+                                                             addApplicationForm.get('port').errors">
+                                <span *ngIf="addApplicationForm.get('port').errors.required">
+                                    Port jest wymagany
+                                </span>
+                                <span *ngIf="addApplicationForm.get('port').errors.pattern">
+                                    Nieprawidłowy format portu
                                 </span>
                         </span>
         </div>
